@@ -17,14 +17,9 @@ import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-s
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 
-import tailwindcss from '@tailwindcss/vite'
-
 export default defineConfig({
   site: 'https://astro-erudite.vercel.app',
   integrations: [mdx(), react(), sitemap(), icon()],
-  vite: {
-    plugins: [tailwindcss()],
-  },
   server: {
     port: 1234,
     host: true,
