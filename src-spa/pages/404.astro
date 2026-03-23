@@ -1,0 +1,10 @@
+---
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+import SpaRoot from '@/spa/root'
+---
+
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="Not Found" />
+  <SpaRoot basename="/" client:only="react" />
+</Layout>

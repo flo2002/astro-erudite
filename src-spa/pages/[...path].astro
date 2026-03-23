@@ -1,0 +1,51 @@
+---
+import PageHead from '@/components/page-head.astro'
+import Layout from '@/layouts/layout.astro'
+import SpaRoot from '@/spa/root'
+import { SITE } from '@/consts'
+import {
+  getAllAuthors,
+  getAllPostsAndSubposts,
+  getSortedTags,
+} from '@/lib/data-utils'
+
+export async function getStaticPaths() {
+  const posts = await getAllPostsAndSubposts()
+  const authors = await getAllAuthors()
+  const tags = await getSortedTags()
+
+  const paginationPageCount = Math.max(
+    1,
+    Math.ceil(
+      posts.filter((post) => !post.id.includes('/')).length / SITE.postsPerPage,
+    ),
+  )
+
+  const staticRoutes = [
+    '',
+    'about',
+    'blog',
+    'authors',
+    'tags',
+    ...Array.from(
+      { length: paginationPageCount },
+      (_, index) => `blog/page/${index + 1}`,
+    ),
+    ...posts.map((post) => `blog/${post.id}`),
+    ...authors.map((author) => `authors/${author.id}`),
+    ...tags.map(({ tag }) => `tags/${tag}`),
+  ]
+
+  const uniqueRoutes = [...new Set(staticRoutes)]
+  return uniqueRoutes.map((path) => ({
+    params: {
+      path: path || undefined,
+    },
+  }))
+}
+---
+
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="SPA" />
+  <SpaRoot basename="/" client:only="react" />
+</Layout>
