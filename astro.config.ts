@@ -20,6 +20,9 @@ import type { ExpressiveCodeTheme } from 'rehype-expressive-code'
 export default defineConfig({
   site: 'https://astro-erudite.vercel.app',
   integrations: [mdx(), react(), sitemap(), icon()],
+  vite: {
+    cacheDir: '.vite',
+  },
   server: {
     port: 1234,
     host: true,

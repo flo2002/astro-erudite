@@ -9,8 +9,12 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "build:spa": "astro check --config astro.config.spa.ts && astro build --config astro.config.spa.ts",
+    "build:both": "node scripts/build-both.mjs",
     "preview": "astro preview",
     "preview:spa": "astro preview",
+    "preview:islands": "vite preview --outDir dist-islands --port 3001 --host --strictPort",
+    "preview:no-islands": "vite preview --outDir dist-no-islands --port 3002 --host --strictPort",
+    "preview:both": "concurrently \"bun run preview:islands\" \"bun run preview:no-islands\"",
     "astro": "astro",
     "prettier": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore"
   },
@@ -47,10 +51,12 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "prettier": "^3.5.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-astro-organize-imports": "^0.4.11",
-    "prettier-plugin-tailwindcss": "^0.6.11"
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "vite": "^5.4.11"
   },
   "prettier": {
     "semi": false,
