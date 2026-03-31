@@ -12,8 +12,8 @@
     "build:both": "node scripts/build-both.mjs",
     "preview": "astro preview",
     "preview:spa": "astro preview",
-    "preview:islands": "vite preview --outDir dist-islands --port 3001 --host --strictPort",
-    "preview:no-islands": "vite preview --outDir dist-no-islands --port 3002 --host --strictPort",
+    "preview:islands": "node scripts/preview-static.mjs --dir dist-islands --port 3001 --host 0.0.0.0",
+    "preview:no-islands": "node scripts/preview-static.mjs --dir dist-no-islands --port 3002 --host 0.0.0.0",
     "preview:both": "concurrently \"bun run preview:islands\" \"bun run preview:no-islands\"",
     "astro": "astro",
     "prettier": "prettier --write **/*.{ts,tsx,css,astro} --ignore-path .gitignore"
