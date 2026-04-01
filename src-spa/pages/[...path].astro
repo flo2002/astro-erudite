@@ -29,6 +29,10 @@ export async function getStaticPaths() {
     'tags',
     ...Array.from(
       { length: paginationPageCount },
+      (_, index) => (index === 0 ? 'blog' : `blog/${index + 1}`),
+    ),
+    ...Array.from(
+      { length: paginationPageCount },
       (_, index) => `blog/page/${index + 1}`,
     ),
     ...posts.map((post) => `blog/${post.id}`),

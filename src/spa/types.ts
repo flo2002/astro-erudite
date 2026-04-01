@@ -3,6 +3,12 @@ export type SpaAuthor = {
   name: string
   avatar: string
   bio?: string
+  pronouns?: string
+  website?: string
+  github?: string
+  twitter?: string
+  linkedin?: string
+  mail?: string
 }
 
 export type SpaProject = {

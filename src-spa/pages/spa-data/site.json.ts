@@ -99,6 +99,12 @@ export const GET: APIRoute = async () => {
 		name: author.data.name,
 		avatar: author.data.avatar,
 		bio: author.data.bio,
+		pronouns: author.data.pronouns,
+		website: author.data.website,
+		github: author.data.github,
+		twitter: author.data.twitter,
+		linkedin: author.data.linkedin,
+		mail: author.data.mail,
 	}))
 
 	const serializedProjects = projects.map((project) => ({
@@ -124,6 +130,9 @@ export const GET: APIRoute = async () => {
 	const parentPosts = serializedPosts.filter((post) => !post.isSubpost)
 	const pageCount = Math.max(1, Math.ceil(parentPosts.length / SITE.postsPerPage))
 	for (let page = 1; page <= pageCount; page++) {
+		if (page > 1) {
+			routeSet.add(`/blog/${page}`)
+		}
 		routeSet.add(`/blog/page/${page}`)
 	}
 

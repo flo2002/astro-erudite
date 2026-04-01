@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "dev:spa": "astro dev --config astro.config.spa.ts",
+    "dev:both": "concurrently \"bun run dev --port 3001\" \"bun run dev:spa --port 3002\"",
     "start": "astro dev",
     "build": "astro check && astro build",
     "build:spa": "astro check --config astro.config.spa.ts && astro build --config astro.config.spa.ts",
