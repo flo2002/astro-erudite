@@ -757,21 +757,21 @@ function AuthorsPage({ data }: { data: SpaSiteData }) {
           <li key={author.id} className="rounded-xl border p-4">
             <div className="flex flex-wrap gap-4">
               {author.avatar ? (
-                <img
-                  src={author.avatar}
-                  alt={`${author.name} avatar`}
-                  className="size-32 rounded-md object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                />
+                <Link to={`/authors/${author.id}`} className="block">
+                  <img
+                    src={author.avatar}
+                    alt={`Avatar of ${author.name}`}
+                    className="size-32 rounded-md object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                  />
+                </Link>
               ) : null}
               <div className="flex grow flex-col justify-between gap-y-4">
                 <div>
                   <div className="flex flex-wrap items-center gap-x-2">
-                    <Link to={`/authors/${author.id}`} className="text-lg font-medium hover:underline">
-                      {author.name}
-                    </Link>
+                    <span className="text-lg font-medium">{author.name}</span>
                     {author.pronouns ? <span className="text-muted-foreground text-sm">({author.pronouns})</span> : null}
                   </div>
                   {author.bio ? <p className="text-muted-foreground mt-2 text-sm">{author.bio}</p> : null}
